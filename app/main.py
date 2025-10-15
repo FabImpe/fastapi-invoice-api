@@ -43,3 +43,39 @@ def about():
         "tech_stack": ["FastAPI", "Python"]
     }
 
+# Path parameters
+@app.get("/invoices/{invoice_id}")
+def get_invoice(invoice_id: int):
+    """
+    Get a specific invoice by ID
+
+    Args:
+        invoice_id (int): The invoice ID
+
+    Returns:
+        Invoice data
+    """
+    # Fake data
+    return {
+        "invoice_id": invoice_id,
+        "client": "Acme Corp",
+        "total": 1500.00,
+        "status": "pending"
+    }
+
+@app.get("/clients/{client_name}")
+def get_client(client_name: str):
+    """Get client information by name
+
+    Args:
+        client_name (str): Name of the client
+    
+    Returns:
+        Client data with invoices summary
+    """
+    return {
+        "name": client_name,
+        "total_invoices": 1,
+        "total_amount": 1500.00,
+        "status": "active"
+    }
