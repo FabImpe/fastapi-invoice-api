@@ -4,6 +4,15 @@ FastAPI Invoice Management API - Main application entry point.
 from fastapi import FastAPI
 from typing import Optional
 
+# Fake data
+FAKE_INVOICES = [
+    {"id": 1, "client": "Acme Corp", "total": 1500.00, "status": "paid"},
+    {"id": 2, "client": "Beta Inc", "total": 2500.00, "status": "pending"},
+    {"id": 3, "client": "Gamma Ltd", "total": 800.00, "status": "overdue"},
+    {"id": 4, "client": "Acme Corp", "total": 3200.00, "status": "paid"},
+    {"id": 5, "client": "Delta Co", "total": 1200.00, "status": "pending"},
+]
+
 # Create FastAPI instance
 app = FastAPI(
     title = "Invoice Management",
@@ -90,20 +99,14 @@ def list_invoices(status: Optional[str] = None, limit: int = 10, skip: int = 0):
 
     Args:
         status (Optional[str], optional): Filter by status (paid, pending, overdue). Defaults to None.
-        limit (int, optional): Manimum number of results. Defaults to 10.
+        limit (int, optional): Maximum number of results. Defaults to 10.
         skip (int, optional): Number of results to skip (pagination). Defaults to 0.
 
     Return:
         List of invoices
     """
     # Fake data
-    invoices = [
-        {"id": 1, "client": "Acme Corp", "total": 1500.00, "status": "paid"},
-        {"id": 2, "client": "Beta Inc", "total": 2500.00, "status": "pending"},
-        {"id": 3, "client": "Gamma Ltd", "total": 800.00, "status": "overdue"},
-        {"id": 4, "client": "Acme Corp", "total": 3200.00, "status": "paid"},
-        {"id": 5, "client": "Delta Co", "total": 1200.00, "status": "pending"},
-    ]
+    invoices = FAKE_INVOICES.copy()
 
     # Filtre par status si fourni
     if status:
@@ -130,21 +133,9 @@ def search_invoices(client: Optional[str] = None, min_amount: Optional[float] = 
     Returns:
         Filtered invoices
     """
-    # TON CODE ICI
-    # Utilise les mêmes données fake que list_invoices
-    # Applique les filtres :
-    # - Si client est fourni, filtre par nom (case-insensitive, partial match)
-    # - Si min_amount est fourni, garde seulement les factures >= min_amount
-    # - Si max_amount est fourni, garde seulement les factures <= max_amount
 
     # Fake data
-    invoices = [
-        {"id": 1, "client": "Acme Corp", "total": 1500.00, "status": "paid"},
-        {"id": 2, "client": "Beta Inc", "total": 2500.00, "status": "pending"},
-        {"id": 3, "client": "Gamma Ltd", "total": 800.00, "status": "overdue"},
-        {"id": 4, "client": "Acme Corp", "total": 3200.00, "status": "paid"},
-        {"id": 5, "client": "Delta Co", "total": 1200.00, "status": "pending"},
-    ]
+    invoices = FAKE_INVOICES.copy()
 
     # Filter by Client name if provided
     if client:
